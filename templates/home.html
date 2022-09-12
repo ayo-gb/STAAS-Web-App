@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<article class="media content-section">
+  <div class="media-body">
+      <div class="article-metadata" style="display: flex; flex-wrap: wrap;">
+          <small style="flex-basis: 12%;">ID</small>
+          <small style="flex-basis: 28%;">Type</small>
+          <small style="flex-basis: 20%;">Replication</small>
+          <small style="flex-basis: 20%;">Filters</small>
+          <small style="flex-basis: 20%;">Source Address</small>
+      </div>
+  </div>
+</article>
+  {% for flow in flows %}
+      <article class="media content-section">
+          <div class="media-body" style="display: flex; flex-wrap: wrap;">
+              <small style="flex-basis: 12%;">{{ flow.id }}</small>
+              <small style="flex-basis: 28%;">{{ flow.name }}</small>
+              <small style="flex-basis: 20%;">{{ flow.replication }}</small>
+              <small style="flex-basis: 20%;">{{ flow.filters }}</small>
+              <small style="flex-basis: 20%;">{{ flow.source_address }}</small>
+          </div>
+      </article>
+  {% endfor %}
+{% endblock content %}

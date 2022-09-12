@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    {% if current_user.is_admin %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata" style="display: flex; flex-wrap: wrap;">
+                    <small style="flex-basis: 12%;">ID</small>
+                    <small style="flex-basis: 28%;">Type</small>
+                    <small style="flex-basis: 20%;">Replication</small>
+                    <small style="flex-basis: 20%;">Filters</small>
+                    <small style="flex-basis: 20%;">Source Address</small>
+                </div>
+            </div>
+        </article>
+            {% for flow in flows %}
+            <a href="{{ url_for('flow', flow_id=flow.id) }}">
+                <article class="media content-section">
+                    <div class="media-body" style="display: flex; flex-wrap: wrap;">
+                        <small style="flex-basis: 12%;">{{ flow.id }}</small>
+                        <small style="flex-basis: 28%;">{{ flow.name }}</small>
+                        <small style="flex-basis: 20%;">{{ flow.replication }}</small>
+                        <small style="flex-basis: 20%;">{{ flow.filters }}</small>
+                        <small style="flex-basis: 20%;">{{ flow.source_address }}</small>
+                    </div>
+                </article>
+                </a>
+            {% endfor %}
+    {% else %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata" style="display: flex; flex-wrap: wrap;">
+                    <small style="flex-basis: 12%;">ID</small>
+                    <small style="flex-basis: 22%;">Name</small>
+                    <small style="flex-basis: 22%;">Source Flow</small>
+                    <small style="flex-basis: 24%;">Destination Address</small>
+                    <small style="flex-basis: 20%;">Status</small>
+                </div>
+            </div>
+        </article>
+        
+            {% for flow in flows %}
+            <a href="{{ url_for('flow', flow_id=flow.id) }}">
+                <article class="media content-section">
+                    <div class="media-body" style="display: flex; flex-wrap: wrap;">
+                        <small style="flex-basis: 12%;">{{ flow.id }}</small>
+                        <small style="flex-basis: 22%;">{{ flow.name }}</small>
+                        <small style="flex-basis: 22%;">{{ flow.source_flow }}</small>
+                        <small style="flex-basis: 24%;">{{ flow.destination_address }}</small>
+                        {% if flow.status %}
+                            <small style="flex-basis: 20%;"> Active</small>
+                        {% else %}
+                            <small style="flex-basis: 20%;"> Paused</small>
+                        {% endif%}
+                    </div>
+                </article>
+                </a>
+            {% endfor %}
+    {% endif %}
+{% endblock content %}

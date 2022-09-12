@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        {% if flow.user_id == current_user.id %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('user_flows', flow_id=flowid) }}">Back</a>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ flow.name }}</h2>
+      <p class="article-content"> Start Time: {{ flow.start_time }}</p>
+      {% if flow.status %}
+      <p class="article-content"> Status: Active</p>
+      {% else %}
+      <p class="article-content"> Status: Paused</p>
+      {% endif %}
+      <p class="article-content"> Description: {{ flow.description }}</p>
+      {% if flow.is_offered %}
+      <p class="article-content"> Source Address: {{ flow.source_address }}</p>
+      <p class="article-content"> Filters: {{ flow.filters}}</p>
+      <p class="article-content"> Speed: {{ flow.speed}}</p>
+      <p class="article-content"> Replication: {{ flow.replication }}</p>
+      {% else %}
+      <p class="article-content"> Source Flow: {{ flow.source_flow }}</p>
+      <p class="article-content"> Destination Address: {{ flow.destination_address}} (port: {{ flow.destination_port }})</p>
+      <p class="article-content"> Port Type: {{ flow.port_type }}</p>
+      <p class="article-content"> Selected Traffic: {{ flow.selected_traffic }}</p>
+      <p class="article-content"> Payload Obfuscation: {{ flow.payload_obfuscation }}</p>
+      {% endif %}
+    </div>
+  </article>
+{% endblock content %}
+Footer
