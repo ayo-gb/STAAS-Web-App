@@ -2,7 +2,7 @@
  
  STARTUP DETAILS
  - Note: Database is automatically recreated before first server request when app is initially run (See function recreate_tables in staas_site.py)
- - Run virtual environment with following command: "source flaskblog_env/bin/activate"
+ - See requirements.txt for all necessary packages to install in order to run app
  - Run web app with following command: "python staas_site.py"
 
 
